@@ -42,10 +42,6 @@ export default function App() {
         tax = tax + salary * 0.0125;
 
     let returnValues = [salary, tax]
-    console.log(
-      "tuntipalkat: ", hourlyWage * hours, "\n",
-      "iltalisät: ", nightHours
-    )
     return returnValues;
   }
 
