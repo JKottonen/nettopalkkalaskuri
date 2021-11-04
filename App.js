@@ -1,11 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
 import colors from './assets/colors';
 
 export default function App() {
-  function calculateSalary(hours, eveningHours, nightHours, sundayHours) {
+  const [hours, setHours] = useState();
+  const [eveningHours, setEveningHours] = useState();
+  const [nightHours, setNightHours] = useState();
+  const [sundayHours, setSundayHours] = useState();
+  const [taxPerc, setTaxPerc] = useState();
+  const [hourlyWage, setHourlyWage] = useState();
+
+  const salAndTax = calculateSalary(false, hours, eveningHours, nightHours, sundayHours, taxPerc);
+  const salary = salAndTax[0]
+  const tax = salAndTax[1]
+
+  const netSalary = (salary - tax)
+
+  function calculateSalary(net, hours, eveningHours, nightHours, sundayHours) {
     hours = parseFloat(hours);
     eveningHours = parseFloat(eveningHours);
     nightHours = parseFloat(nightHours);
@@ -13,14 +26,12 @@ export default function App() {
 
     let hourlyWage = 15
 
-    return (hourlyWage * hours) + eveningHours * 1.2;
+    let salary = (hourlyWage * hours) + eveningHours * 1.2;
+    let tax = 23;
+    let returnValues = [salary, tax]
+    return returnValues;
   }
 
-  const [hours, setHours] = useState();
-  const [eveningHours, setEveningHours] = useState();
-  const [nightHours, setNightHours] = useState();
-  const [sundayHours, setSundayHours] = useState();
-  const salary = calculateSalary(hours, eveningHours, nightHours, sundayHours);
 
   return (
     <View style={styles.container}>
@@ -71,7 +82,48 @@ export default function App() {
 
       </View>
 
-      <Text style= {styles.tableText}> {salary} </Text>
+      <View style= {styles.inputWrapper}>
+
+        <View style={styles.inputUnit}>
+          <Text style={styles.tableText}>Tuntipalkka</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder={"0"} 
+            value={hourlyWage}
+            onChangeText={(text) => setHourlyWage(text)}
+          />
+        </View>
+
+        <View style={styles.inputUnit}>
+          <Text style={styles.tableText}>Veroprosentti</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder={"0"} 
+            value={taxPerc}
+            onChangeText={(text) => setTaxPerc(text)}
+          />
+        </View>
+
+      </View>
+
+      <View style={styles.outputWrapper}>
+        
+        <View style={styles.inputUnit}>
+          <Text style={styles.tableText}>Bruttopalkka</Text>
+          <View style={styles.inputField}>
+          <Text style= {styles.tableText}> {salary} </Text>
+          </View>
+        </View>
+
+        <View style={styles.inputUnit}>
+          <Text style={styles.tableText}>Nettopalkka</Text>
+          <View style={styles.inputField}>
+          <Text style= {styles.tableText}> {netSalary} </Text>
+          </View>
+        </View>
+
+      </View>
+
     
     </View>
   );
@@ -95,6 +147,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SecondaryBackground,
   },
   inputWrapper: {
+    flex: 0.15,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+  },
+  outputWrapper: {
     flex: 0.5,
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -115,8 +173,28 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.liningColor,
   },
+  outputField: {
+    backgroundColor: colors.formWhite,
+    borderWidth: 1,
+    borderColor: colors.liningColor,
+  },
   tableText: {
-    fontSize: 12,
+    fontSize: 20,
     color: colors.textColor,
-  }
+  },
+  checkBoxWrapper: {
+    flex: 0.15,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+  },
+  checkBox: {
+    height: 30,
+    width: 30,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: colors.liningColor
+  },
 });
