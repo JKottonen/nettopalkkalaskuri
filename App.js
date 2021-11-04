@@ -12,22 +12,29 @@ export default function App() {
   const [taxPerc, setTaxPerc] = useState();
   const [hourlyWage, setHourlyWage] = useState();
 
-  const salAndTax = calculateSalary(false, hours, eveningHours, nightHours, sundayHours, taxPerc);
+  const salAndTax = calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayHours, taxPerc);
   const salary = salAndTax[0]
   const tax = salAndTax[1]
 
-  const netSalary = (salary - tax)
+  const netSalary = salary - tax
 
-  function calculateSalary(net, hours, eveningHours, nightHours, sundayHours) {
+  function calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayHours, taxPerc) {
     hours = parseFloat(hours);
     eveningHours = parseFloat(eveningHours);
     nightHours = parseFloat(nightHours);
     sundayHours = parseFloat(sundayHours);
+    hourlyWage = parseFloat(hourlyWage);
 
-    let hourlyWage = 15
+    let salary = hourlyWage * hours;
 
-    let salary = (hourlyWage * hours) + eveningHours * 1.2;
-    let tax = 23;
+    salary += eveningHours * 1.1;
+    salary += nightHours * 2.17;
+    salary += sundayHours * hourlyWage;
+
+    let tax = salary * taxPerc/100;
+        tax = tax + salary * 0.0715;
+        tax = tax + salary * 0.0125;
+
     let returnValues = [salary, tax]
     return returnValues;
   }
@@ -111,14 +118,14 @@ export default function App() {
         <View style={styles.inputUnit}>
           <Text style={styles.tableText}>Bruttopalkka</Text>
           <View style={styles.inputField}>
-          <Text style= {styles.tableText}> {salary} </Text>
+          <Text style= {styles.tableText}> {salary.toFixed(2)} </Text>
           </View>
         </View>
 
         <View style={styles.inputUnit}>
           <Text style={styles.tableText}>Nettopalkka</Text>
           <View style={styles.inputField}>
-          <Text style= {styles.tableText}> {netSalary} </Text>
+          <Text style= {styles.tableText}> {netSalary.toFixed(2)} </Text>
           </View>
         </View>
 
