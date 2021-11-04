@@ -8,20 +8,24 @@ export default function App() {
   const [hours, setHours] = useState();
   const [eveningHours, setEveningHours] = useState();
   const [nightHours, setNightHours] = useState();
+  const [sundayNightHours, setSundayNightHours] = useState();
+  const [sundayEveningtHours, setSundayEveningHours] = useState();
   const [sundayHours, setSundayHours] = useState();
   const [taxPerc, setTaxPerc] = useState();
   const [hourlyWage, setHourlyWage] = useState();
 
-  const salAndTax = calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayHours, taxPerc);
+  const salAndTax = calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayEveningtHours, sundayNightHours, sundayHours, taxPerc);
   const salary = salAndTax[0]
   const tax = salAndTax[1]
 
   const netSalary = salary - tax
 
-  function calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayHours, taxPerc) {
+  function calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayEveningtHours, sundayNightHours, sundayHours, taxPerc) {
     hours = parseFloat(hours);
     eveningHours = parseFloat(eveningHours);
     nightHours = parseFloat(nightHours);
+    sundayEveningtHours = parseFloat(sundayEveningtHours);
+    sundayNightHours = parseFloat(sundayNightHours);
     sundayHours = parseFloat(sundayHours);
     hourlyWage = parseFloat(hourlyWage);
 
@@ -29,6 +33,8 @@ export default function App() {
 
     salary += eveningHours * 1.1;
     salary += nightHours * 2.17;
+    salary += sundayEveningtHours * 2.2;
+    salary += sundayNightHours * 4.34;
     salary += sundayHours * hourlyWage;
 
     let tax = salary * taxPerc/100;
@@ -36,6 +42,10 @@ export default function App() {
         tax = tax + salary * 0.0125;
 
     let returnValues = [salary, tax]
+    console.log(
+      "tuntipalkat: ", hourlyWage * hours, "\n",
+      "iltalisät: ", nightHours
+    )
     return returnValues;
   }
 
@@ -74,6 +84,30 @@ export default function App() {
             placeholder={"0"} 
             value={nightHours}
             onChangeText={(text) => setNightHours(text)}
+          />
+        </View>
+
+      </View>
+
+      <View style= {styles.inputWrapper}>
+
+        <View style={styles.inputUnit}>
+          <Text style={styles.tableText}>Pyhäiltalisä</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder={"0"} 
+            value={sundayEveningtHours}
+            onChangeText={(text) => setSundayEveningHours(text)}
+          />
+        </View>
+
+        <View style={styles.inputUnit}>
+          <Text style={styles.tableText}>Pyhäyölisä</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder={"0"} 
+            value={sundayNightHours}
+            onChangeText={(text) => setSundayNightHours(text)}
           />
         </View>
 
@@ -145,16 +179,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBackground,
   },
   headerText: {
-    flex: 0.1,
+    flex: 0.08,
     fontSize: 25,
     fontWeight: "bold",
     color: colors.textColor,
-    paddingTop: 30,
+    paddingTop: 50,
     paddingLeft: 10,
     backgroundColor: colors.SecondaryBackground,
   },
   inputWrapper: {
-    flex: 0.15,
+    
     flexDirection: "row",
     justifyContent: "flex-start",
     paddingLeft: 10,
@@ -173,12 +207,13 @@ const styles = StyleSheet.create({
   },
   inputUnit: {
     flexDirection: "column",
-    padding: 10,
+    padding: 5,
   },
   inputField: {
     backgroundColor: colors.formWhite,
     borderWidth: 1,
     borderColor: colors.liningColor,
+    padding: 5
   },
   outputField: {
     backgroundColor: colors.formWhite,
