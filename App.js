@@ -2,10 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import colors from './assets/colors';
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.headerText}>Laske palkka</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -14,8 +16,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.BackgroundBeige,
   },
+  wrapper: {
+    
+  },
+  headerText: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: colors.textColor,
+//    backgroundColor: "beige",
+    paddingTop: "10%",
+    
+  }
 });
