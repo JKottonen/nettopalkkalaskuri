@@ -54,7 +54,7 @@ export default function App() {
 
       <View style= {styles.inputWrapper}>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Tunnit</Text>
           <TextInput
             style={styles.inputField}
@@ -64,7 +64,7 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Iltalisä</Text>
           <TextInput
             style={styles.inputField}
@@ -74,7 +74,7 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Yölisä</Text>
           <TextInput
             style={styles.inputField}
@@ -88,7 +88,7 @@ export default function App() {
 
       <View style= {styles.inputWrapper}>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Pyhäiltalisä</Text>
           <TextInput
             style={styles.inputField}
@@ -98,7 +98,7 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Pyhäyölisä</Text>
           <TextInput
             style={styles.inputField}
@@ -108,7 +108,7 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Pyhälisä</Text>
           <TextInput
             style={styles.inputField}
@@ -122,7 +122,7 @@ export default function App() {
 
       <View style= {styles.inputWrapper}>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Tuntipalkka</Text>
           <TextInput
             style={styles.inputField}
@@ -132,7 +132,7 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Veroprosentti</Text>
           <TextInput
             style={styles.inputField}
@@ -146,14 +146,14 @@ export default function App() {
 
       <View style={styles.outputWrapper}>
         
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Bruttopalkka</Text>
           <View style={styles.inputField}>
           <Text style= {styles.tableText}> {salary.toFixed(2)} </Text>
           </View>
         </View>
 
-        <View style={styles.inputUnit}>
+        <View style={styles.textFieldUnit}>
           <Text style={styles.tableText}>Nettopalkka</Text>
           <View style={styles.inputField}>
           <Text style= {styles.tableText}> {netSalary.toFixed(2)} </Text>
@@ -171,12 +171,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    alignContent: "flex-start",
-    justifyContent: "flex-start",
+//    alignContent: "flex-start",
+//    justifyContent: "flex-start",
     backgroundColor: colors.primaryBackground,
   },
   headerText: {
-    flex: 0.08,
+    flex: 0.2,
     fontSize: 25,
     fontWeight: "bold",
     color: colors.textColor,
@@ -191,11 +191,11 @@ const styles = StyleSheet.create({
 //    backgroundColor: "white",
   },
   outputWrapper: {
-    flex: 0.5,
+    flex: 0.4,
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
-  inputUnit: {
+  textFieldUnit: {
     flexDirection: "column",
     padding: 5,
     flex: 1/3
@@ -214,20 +214,5 @@ const styles = StyleSheet.create({
   tableText: {
     fontSize: 20,
     color: colors.textColor,
-  },
-  checkBoxWrapper: {
-    flex: 0.15,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    paddingLeft: 10,
-  },
-  checkBox: {
-    height: 30,
-    width: 30,
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 2,
-    borderColor: colors.liningColor
   },
 });
