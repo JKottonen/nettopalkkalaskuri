@@ -185,26 +185,20 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SecondaryBackground,
   },
   inputWrapper: {
-    
     flexDirection: "row",
     justifyContent: "flex-start",
-    paddingLeft: 10,
+    paddingLeft: 0,
+//    backgroundColor: "white",
   },
   outputWrapper: {
     flex: 0.5,
     flexDirection: "row",
-    justifyContent: "flex-start",
-    paddingLeft: 10,
-  },
-  outputArea: {
-    flex: 0.5,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    paddingLeft: 10,
+    justifyContent: "space-evenly",
   },
   inputUnit: {
     flexDirection: "column",
     padding: 5,
+    flex: 1/3
   },
   inputField: {
     backgroundColor: colors.formWhite,
