@@ -31,10 +31,10 @@ export default function App() {
 
     let salary = hourlyWage * hours;
 
-    salary += eveningHours * 1.1;
-    salary += nightHours * 2.17;
-    salary += sundayEveningtHours * 2.2;
-    salary += sundayNightHours * 4.34;
+    salary += eveningHours * 1.3;
+    salary += nightHours * 2.21;
+    salary += sundayEveningtHours * 2.6;
+    salary += sundayNightHours * 4.42;
     salary += sundayHours * hourlyWage;
 
     let tax = salary * taxPerc/100;
@@ -57,7 +57,7 @@ export default function App() {
           <Text style={styles.tableText}>Tunnit</Text>
           <TextInput
             style={styles.inputField}
-            placeholder={"0"} 
+            placeholder={"0"}
             value={hours}
             onChangeText={(text) => setHours(text)}
           />
