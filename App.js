@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBackground,
   },
   headerText: {
-    flex: 0.2,
+    flex: 0.08,
     fontSize: 25,
     fontWeight: "bold",
     color: colors.textColor,
