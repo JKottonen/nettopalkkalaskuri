@@ -21,14 +21,14 @@ export default function App() {
   const netSalary = salary - tax
 
   function calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayEveningtHours, sundayNightHours, sundayHours, taxPerc) {
-    hours = parseFloat(hours) || 0;
-    eveningHours = parseFloat(eveningHours) || 0;
+    hours = parseFloat(hours || 0);
+    eveningHours = parseFloat(eveningHours || 0);
     nightHours = parseFloat(nightHours) || 0;
-    sundayEveningtHours = parseFloat(sundayEveningtHours) || 0;
-    sundayNightHours = parseFloat(sundayNightHours) || 0;
-    sundayHours = parseFloat(sundayHours) || 0;
-    hourlyWage = parseFloat(hourlyWage) || 0;
-    taxPerc = parseFloat(taxPerc) || 0;
+    sundayEveningtHours = parseFloat(sundayEveningtHours || 0);
+    sundayNightHours = parseFloat(sundayNightHours || 0);
+    sundayHours = parseFloat(sundayHours || 0);
+    hourlyWage = parseFloat(hourlyWage || 0);
+    taxPerc = parseFloat(taxPerc || 0);
 
     let salary = hourlyWage * hours;
 
