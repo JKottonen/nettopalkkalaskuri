@@ -2,10 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
+import InputUnit from './components/InputUnit';
+
 import colors from './assets/colors';
 
 export default function App() {
-  const [hours, setHours] = useState();
+  const [hours, setHours] = useState("0");
   const [eveningHours, setEveningHours] = useState();
   const [nightHours, setNightHours] = useState();
   const [sundayNightHours, setSundayNightHours] = useState();
@@ -21,7 +23,7 @@ export default function App() {
   const netSalary = salary - tax
 
   function calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayEveningtHours, sundayNightHours, sundayHours, taxPerc) {
-    hours = parseFloat(hours) || 0;
+    hours = parseFloat(hours);
     eveningHours = parseFloat(eveningHours) || 0;
     nightHours = parseFloat(nightHours) || 0;
     sundayEveningtHours = parseFloat(sundayEveningtHours) || 0;
@@ -50,6 +52,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+
       <Text style={styles.headerText}>Laske palkka</Text>
 
       <View style= {styles.inputWrapper}>
@@ -64,83 +67,15 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Iltalisä</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={eveningHours}
-            onChangeText={(text) => setEveningHours(text)}
-          />
-        </View>
+      </View>
 
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Yölisä</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={nightHours}
-            onChangeText={(text) => setNightHours(text)}
-          />
-        </View>
+      <View style= {styles.inputWrapper}>
 
       </View>
 
       <View style= {styles.inputWrapper}>
 
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Pyhäiltalisä</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={sundayEveningtHours}
-            onChangeText={(text) => setSundayEveningHours(text)}
-          />
-        </View>
-
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Pyhäyölisä</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={sundayNightHours}
-            onChangeText={(text) => setSundayNightHours(text)}
-          />
-        </View>
-
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Pyhälisä</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={sundayHours}
-            onChangeText={(text) => setSundayHours(text)}
-          />
-        </View>
-
-      </View>
-
-      <View style= {styles.inputWrapper}>
-
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Tuntipalkka</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={hourlyWage}
-            onChangeText={(text) => setHourlyWage(text)}
-          />
-        </View>
-
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Veroprosentti</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"} 
-            value={taxPerc}
-            onChangeText={(text) => setTaxPerc(text)}
-          />
-        </View>
+        <InputUnit title="TEKSTIKENTTÄ"></InputUnit>
 
       </View>
 
