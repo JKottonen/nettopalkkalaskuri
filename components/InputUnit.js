@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 import colors from '../assets/colors';
 
 
-export default function InputUnit(props) {
+function InputUnit(props) {
   return (
     <View style={styles.textFieldUnit}>
 
@@ -13,8 +13,8 @@ export default function InputUnit(props) {
       <TextInput
           style={styles.inputField}
           placeholder={"0"}
-          value={props.value34}
-          onChangeText={(text) => props.valueChanged(parseFloat(text))}
+          value={props.value}
+          onChangeText={(text) => { props.valueChanged(parseFloat(text)) }}
       />
 
     </View>
@@ -43,3 +43,5 @@ const styles = StyleSheet.create({
       color: colors.textColor,
     },
   });
+
+export default InputUnit;
