@@ -59,7 +59,7 @@ function App() {
     let eveningAllowance = 1.1;
     let nightAllowance = 2.17;
     let pensionContribution = 0.0715;
-    let unemploymentInsurance = 0.014;
+    let unemploymentInsurance = 0.0125;
 
     let gross = hours * hourlyWage + 
                 eveningHours * eveningAllowance + 
