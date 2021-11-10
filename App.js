@@ -7,45 +7,16 @@ import InputUnit from './components/InputUnit';
 import colors from './assets/colors';
 
 export default function App() {
-  const [hours, setHours] = useState("0");
-  const [eveningHours, setEveningHours] = useState();
-  const [nightHours, setNightHours] = useState();
-  const [sundayNightHours, setSundayNightHours] = useState();
-  const [sundayEveningtHours, setSundayEveningHours] = useState();
-  const [sundayHours, setSundayHours] = useState();
-  const [taxPerc, setTaxPerc] = useState();
-  const [hourlyWage, setHourlyWage] = useState();
+  const [hours, setHours] = useState();
 
-  const salAndTax = calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayEveningtHours, sundayNightHours, sundayHours, taxPerc);
+  const salAndTax = calculateSalary();
   const salary = salAndTax[0]
   const tax = salAndTax[1]
 
   const netSalary = salary - tax
 
-  function calculateSalary(hourlyWage, hours, eveningHours, nightHours, sundayEveningtHours, sundayNightHours, sundayHours, taxPerc) {
-    hours = parseFloat(hours);
-    eveningHours = parseFloat(eveningHours) || 0;
-    nightHours = parseFloat(nightHours) || 0;
-    sundayEveningtHours = parseFloat(sundayEveningtHours) || 0;
-    sundayNightHours = parseFloat(sundayNightHours) || 0;
-    sundayHours = parseFloat(sundayHours) || 0;
-    hourlyWage = parseFloat(hourlyWage) || 0;
-    taxPerc = parseFloat(taxPerc) || 0;
-
-    let salary = hourlyWage * hours;
-
-    salary += eveningHours * 1.3;
-    salary += nightHours * 2.21;
-    salary += sundayEveningtHours * 2.6;
-    salary += sundayNightHours * 4.42;
-    salary += sundayHours * hourlyWage;
-
-    let tax = salary * taxPerc/100;
-        tax = tax + salary * 0.0715;
-        tax = tax + salary * 0.0125;
-
-    let returnValues = [salary, tax]
-    return returnValues;
+  function calculateSalary() {
+    return [parseFloat(hours),2]
   }
 
 
@@ -56,26 +27,8 @@ export default function App() {
       <Text style={styles.headerText}>Laske palkka</Text>
 
       <View style= {styles.inputWrapper}>
-
-        <View style={styles.textFieldUnit}>
-          <Text style={styles.tableText}>Tunnit</Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder={"0"}
-            value={hours}
-            onChangeText={(text) => setHours(text)}
-          />
-        </View>
-
-      </View>
-
-      <View style= {styles.inputWrapper}>
-
-      </View>
-
-      <View style= {styles.inputWrapper}>
-
-        <InputUnit title="TEKSTIKENTTÄ"></InputUnit>
+        
+        <InputUnit title="Tunnit" valueChanged={setHours}/>
 
       </View>
 

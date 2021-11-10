@@ -4,23 +4,21 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 import colors from '../assets/colors';
 
 
-export default function InputUnit(props)
-{
-    return (
+export default function InputUnit(props) {
+  return (
+    <View style={styles.textFieldUnit}>
 
-            <View style={styles.textFieldUnit}>
+      <Text style={styles.tableText}>{props.title}</Text>
+      
+      <TextInput
+          style={styles.inputField}
+          placeholder={"0"}
+          value={props.value34}
+          onChangeText={(text) => props.valueChanged(parseFloat(text))}
+      />
 
-                <Text style={styles.tableText}>{props.title}</Text>
-                
-                <TextInput
-                    style={styles.inputField}
-                    placeholder={"0"}
-                    value={"0"}
-                    onChangeText={(text) => setHours(text)}
-                />
-
-            </View>
-    )
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
